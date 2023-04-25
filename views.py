@@ -1,3 +1,7 @@
+#Author: antlampas
+#Date: 2023-04-23
+#This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
@@ -31,5 +35,7 @@ def index(request):
                     except IOError:
                         pass
         filesList.sort()
+    else:
+        pass
     context = { 'Files' : filesList }
     return render(request,'OARDownloader/index.html',context)
