@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+{% if Files %}
+    {% for file in Files %}
+    <p class="oar"><a href="oars/{{ file.1 }}/{{ file.0 }}.oar">{{ file.0 }}</a></p>
+    {% endfor %}
+{% else %}
+    <p>No OARs present</p>
+{% endif %}
+{% endblock %}
