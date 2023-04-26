@@ -4,7 +4,7 @@
 
 from django.contrib import admin
 
-from .models import Setting,Grid,Simulator,Region,Avatar,AvatarRegionAssociation
+from .models import *
 
 @admin.register(Setting)
 class settingAdmin(admin.ModelAdmin):
