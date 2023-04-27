@@ -11,11 +11,9 @@ from pathlib import Path
 from django.apps import apps
 from django.contrib.auth.models import User
 if apps.is_installed("OpenSimBaseInterface"):
-    from OpenSimBaseInterface.models import *   
+    from OpenSimBaseInterface.models import *
 
 from .models import *
-
-# DOWNLOADS_DIR = "/var/opensimulator/backups/OARs/osgrid"
 
 try:
     DOWNLOADS_DIR = Setting.objects.get(option="download_directory").value
