@@ -10,10 +10,15 @@ from pathlib import Path
 
 from django.apps import apps
 from django.contrib.auth.models import User
+#TODO: there's a better way to do this for sure...
 if apps.is_installed("OpenSimBaseInterface"):
     from OpenSimBaseInterface.models import *
 
 from .models import *
+
+#There's a dependency between this app and the OpenSimBaseInterface app
+#TODO: find a good and elegant way to implement this constrain...
+#So far, this code is too weak and prone to bugs...
 
 try:
     DOWNLOADS_DIR = Setting.objects.get(option="download_directory").value
