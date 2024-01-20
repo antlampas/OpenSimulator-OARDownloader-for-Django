@@ -2,30 +2,20 @@
 #Date: 2023-04-23
 #This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
+from django.contrib.auth.models     import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404,render
-from django.http import HttpResponse
-
-from pathlib import Path
-
-from django.apps import apps
-from django.contrib.auth.models import User
-#TODO: there's a better way to do this for sure...
-if apps.is_installed("OpenSimBaseInterface"):
-    from OpenSimBaseInterface.models import *
+from django.shortcuts               import render,get_object_or_404
+from django.apps                    import apps
 
 from .models import *
 
-#There's a dependency between this app and the OpenSimBaseInterface app
-#TODO: find a good and elegant way to implement this constrain...
-#So far, this code is too weak and prone to bugs...
-
-#TODO: reinforce decouple between this app and the actual OARs provider
-
-try:
+if apps.is_installed("OpenSimBaseInterface"): 
+    from OpenSimBaseInterface.models import *
     DOWNLOADS_DIR = Setting.objects.get(option="download_directory").value
-except:
+else:
     DOWNLOADS_DIR = ""
+
+from pathlib import Path
 
 @login_required
 def index(request):
